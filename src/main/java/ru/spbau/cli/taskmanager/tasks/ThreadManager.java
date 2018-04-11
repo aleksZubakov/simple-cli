@@ -120,6 +120,11 @@ public class ThreadManager {
             case pwd:
                 task = new Pwd();
                 break;
+            case cd:
+                task = new Cd(args);
+                break;
+            case ls:
+                task = new Ls(args);
         }
         return task;
     }

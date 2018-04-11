@@ -10,6 +10,8 @@ import java.util.Map;
 public enum Commands {
     echo("echo"),
     pwd("pwd"),
+    ls("ls"),
+    cd("cd"),
     cat("cat"),
     wc("wc"),
     exit("exit");

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class MainThread {
     /**
      * Prints data from stream if stream contains data
-     * @param in
+     * @param
      */
     private static void printStream(InputStream in) {
         while (true) {
