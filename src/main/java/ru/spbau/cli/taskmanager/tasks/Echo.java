@@ -20,7 +20,7 @@ public class Echo implements TaskInterface {
     }
 
     @Override
-    public void run(InputStream in, OutputStream out){
+    public void run(InputStream in, OutputStream out) {
         if (args.isEmpty()) {
             try {
                 out.close();

@@ -23,6 +23,7 @@ public class Lexer {
 
     /**
      * Tries to split given {@code source} into tokens
+     *
      * @return list of splited tokens
      * @throws UnexpectedStringEnd
      */

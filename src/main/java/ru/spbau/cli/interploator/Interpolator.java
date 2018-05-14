@@ -56,8 +56,6 @@ public class Interpolator implements Visitor {
     }
 
     /**
-     *
-     *
      * @param source
      * @return
      */
@@ -113,6 +111,7 @@ public class Interpolator implements Visitor {
     /**
      * Expands variable in current raw string. Checks nothing, ignores
      * quotes.
+     *
      * @param source
      * @return
      */
@@ -142,6 +141,7 @@ public class Interpolator implements Visitor {
     /**
      * Find end of variable-placeholder. Returns index of last symbol
      * of variable name or index of last symbol.
+     *
      * @param source
      * @param startPos
      * @return

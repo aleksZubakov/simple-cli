@@ -5,7 +5,6 @@ import ru.spbau.cli.parser.lexems.Argument;
 import ru.spbau.cli.parser.lexems.Command;
 import ru.spbau.cli.parser.lexems.LexemInterface;
 import ru.spbau.cli.parser.lexems.Pipe;
-import ru.spbau.cli.taskmanager.tasks.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ public class ThreadManager {
 
     /**
      * Runs givem lexems.
+     *
      * @param lexems
      */
     public void run(List<LexemInterface> lexems) {
@@ -102,7 +102,7 @@ public class ThreadManager {
 
     private TaskInterface createTask(Command cmd, List<Argument> args) {
 
-        if(!Commands.isCommand(cmd.getValue())) {
+        if (!Commands.isCommand(cmd.getValue())) {
             return new SubProcess(cmd, args);
         }
 

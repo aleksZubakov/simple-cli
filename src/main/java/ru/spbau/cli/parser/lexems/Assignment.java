@@ -17,6 +17,6 @@ public class Assignment implements LexemInterface {
     }
 
     public String getVar() {
-            return var;
+        return var;
     }
 }

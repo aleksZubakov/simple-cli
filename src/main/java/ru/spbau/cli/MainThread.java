@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class MainThread {
     /**
      * Prints data from stream if stream contains data
+     *
      * @param in
      */
     private static void printStream(InputStream in) {
@@ -41,17 +42,16 @@ public class MainThread {
 
     /**
      * Main loop. Call lexer, parser, interpolator and run commands
+     *
      * @param args
      * @throws IOException
      */
     public static void main(String args[]) throws IOException {
         ThreadManager threadManager = new ThreadManager();
         Environment env = new Environment();
-
         Scanner scanner = new Scanner(System.in);
         String readString = scanner.nextLine();
         while (readString != null) {
-
             Lexer lexer = new Lexer(readString);
             List<TokenInterface> tokens = null;
             try {

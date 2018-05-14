@@ -1,6 +1,5 @@
 package ru.spbau.cli.taskmanager.tasks;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 

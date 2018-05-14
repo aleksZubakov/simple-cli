@@ -21,7 +21,7 @@ public class Cat implements TaskInterface {
     }
 
     @Override
-    public void run(InputStream in, OutputStream out){
+    public void run(InputStream in, OutputStream out) {
         if (args.isEmpty()) {
             try {
                 int data = in.read();

@@ -22,7 +22,7 @@ public class UnquotedStringToken implements TokenInterface {
     }
 
     @Override
-    public void accept(Visitor v){
+    public void accept(Visitor v) {
         v.visit(this);
     }
 }

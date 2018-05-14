@@ -1,8 +1,5 @@
 package ru.spbau.cli.helpers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Enum Commands contains all existing commands names,
  * should be expanded if new commands are created.
@@ -13,7 +10,6 @@ public enum Commands {
     cat("cat"),
     wc("wc"),
     exit("exit");
-//    unknown("");
 
     private final String command;
 
@@ -27,6 +23,7 @@ public enum Commands {
 
     /**
      * Returns true if given value is command, otherwise returns true
+     *
      * @param value
      * @return
      */

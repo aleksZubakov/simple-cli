@@ -21,10 +21,12 @@ public class Argument implements LexemInterface {
         value = tok.getValue();
         quote = Quote.doubleQuoted;
     }
+
     public Argument(SingleQuotedStringToken tok) {
         value = tok.getValue();
         quote = Quote.singleQuoted;
     }
+
     public Argument(UnquotedStringToken tok) {
         value = tok.getValue();
         quote = Quote.unquoted;

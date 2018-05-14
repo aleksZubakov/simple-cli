@@ -78,6 +78,7 @@ public class WC implements TaskInterface {
 
     /**
      * Count words, lines and bytes in given stream
+     *
      * @param in
      * @param out
      * @throws IOException
@@ -92,6 +93,7 @@ public class WC implements TaskInterface {
 
     /**
      * Helper words, lines and bytes in given stream
+     *
      * @param in
      * @param out
      * @throws IOException

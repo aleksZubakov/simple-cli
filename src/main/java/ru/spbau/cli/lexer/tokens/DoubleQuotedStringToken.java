@@ -22,6 +22,7 @@ public class DoubleQuotedStringToken implements TokenInterface {
 
     /**
      * set raw value
+     *
      * @param value
      */
     @Override

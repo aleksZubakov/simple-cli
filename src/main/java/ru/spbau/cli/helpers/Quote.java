@@ -3,7 +3,7 @@ package ru.spbau.cli.helpers;
 /**
  * Represents a double, single quote or special non-quoted symbol
  */
-public enum  Quote {
+public enum Quote {
     singleQuoted('\''),
     doubleQuoted('\"'),
     unquoted('\0');

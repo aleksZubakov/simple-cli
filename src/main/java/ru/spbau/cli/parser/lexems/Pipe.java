@@ -6,7 +6,8 @@ import ru.spbau.cli.lexer.tokens.PipeToken;
  * Represents pipe
  */
 public class Pipe implements LexemInterface {
-    public Pipe() {}
+    public Pipe() {
+    }
 
     public Pipe(PipeToken tok) {
 

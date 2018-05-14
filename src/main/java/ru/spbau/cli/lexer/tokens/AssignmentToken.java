@@ -17,6 +17,7 @@ public class AssignmentToken implements TokenInterface {
 
     /**
      * Returns value in "lvalue=rvalue" format
+     *
      * @return
      */
     @Override
@@ -27,18 +28,19 @@ public class AssignmentToken implements TokenInterface {
     public String getRvalue() {
         return rvalue;
     }
+
     public String getLvalue() {
         return lvalue;
     }
 
     @Override
     public void setValue(String val) {
-    /*TODO rewrite implementation*/
+        /*TODO rewrite implementation*/
         rvalue = val;
     }
 
     @Override
-    public void accept(Visitor v){
+    public void accept(Visitor v) {
         v.visit(this);
     }
 }
