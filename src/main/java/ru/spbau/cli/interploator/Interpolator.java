@@ -1,7 +1,10 @@
 package ru.spbau.cli.interploator;
 
 import ru.spbau.cli.environment.Environment;
-import ru.spbau.cli.lexer.tokens.*;
+import ru.spbau.cli.lexer.tokens.AssignmentToken;
+import ru.spbau.cli.lexer.tokens.DoubleQuotedStringToken;
+import ru.spbau.cli.lexer.tokens.TokenInterface;
+import ru.spbau.cli.lexer.tokens.UnquotedStringToken;
 import ru.spbau.cli.visitor.Visitor;
 
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.List;
  */
 public class Interpolator implements Visitor {
 
-    private Environment env;
+    private final Environment env;
 
     public Interpolator(Environment env) {
         this.env = env;
@@ -25,19 +28,8 @@ public class Interpolator implements Visitor {
      * @return
      */
     public List<TokenInterface> interpolate(List<TokenInterface> tokens) {
-        for (TokenInterface token : tokens) {
-            token.accept(this);
-        }
+        tokens.forEach(tok -> tok.accept(this));
         return tokens;
-    }
-
-    @Override
-    public void visit(PipeToken tok) {
-
-    }
-
-    @Override
-    public void visit(SingleQuotedStringToken tok) {
     }
 
     @Override

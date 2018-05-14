@@ -8,7 +8,7 @@ public class Environment {
      * {@code symbolTable} is a symbol table of global {@code environment}
      * for holding variables
      */
-    private Map<String, String> symbolTable;
+    private final Map<String, String> symbolTable;
 
 
     public Environment() {

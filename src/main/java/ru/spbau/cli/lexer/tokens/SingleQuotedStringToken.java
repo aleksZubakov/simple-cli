@@ -22,8 +22,6 @@ public class SingleQuotedStringToken implements TokenInterface {
         value = val;
     }
 
-
-
     @Override
     public void accept(Visitor v) {
         v.visit(this);

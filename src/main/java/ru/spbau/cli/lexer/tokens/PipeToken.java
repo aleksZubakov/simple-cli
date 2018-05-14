@@ -11,10 +11,6 @@ public class PipeToken implements TokenInterface {
     public PipeToken() {
     }
 
-    public PipeToken(String value) {
-
-    }
-
     @Override
     public String getValue() {
         return "|";

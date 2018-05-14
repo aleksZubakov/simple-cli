@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SubProcess implements TaskInterface {
-    Command cmd;
+    private final Command cmd;
 
-    List<String> args;
+    private final List<String> args;
 
     public SubProcess(Command cmd, List<Argument> args) {
         this.args = args.stream().map(Argument::getValue).collect(Collectors.toList());

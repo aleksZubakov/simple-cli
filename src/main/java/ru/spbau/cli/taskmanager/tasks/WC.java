@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.MessageFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -17,7 +18,7 @@ import java.util.StringTokenizer;
  */
 public class WC implements TaskInterface {
 
-    private List<Argument> args;
+    private final List<Argument> args;
     private int totalWords;
     private int totalLines;
     private int totalChars;
@@ -26,12 +27,14 @@ public class WC implements TaskInterface {
         totalWords = 0;
         totalLines = 0;
         totalChars = 0;
-        args = null;
+        args = Collections.emptyList();
 
     }
 
     public WC(List<Argument> args) {
-        this();
+        totalWords = 0;
+        totalLines = 0;
+        totalChars = 0;
         this.args = args;
     }
 

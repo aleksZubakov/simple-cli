@@ -6,14 +6,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Cat implements TaskInterface {
-    private List<Argument> args;
+public final class Cat implements TaskInterface {
+    private final List<Argument> args;
 
     public Cat() {
-        args = null;
+        args = Collections.emptyList();
     }
 
     public Cat(List<Argument> args) {
@@ -31,9 +32,9 @@ public class Cat implements TaskInterface {
                     data = in.read();
                 }
             } catch (IOException e) {
+                /*TODO throw normal exception */
             }
         } else {
-
             for (Argument arg : args) {
                 try { /*TODO normal exception handling*/
                     readFromFile(out, arg.getValue());
@@ -41,8 +42,6 @@ public class Cat implements TaskInterface {
                     e.printStackTrace();
                 }
             }
-
-
         }
 
         try {
@@ -54,12 +53,11 @@ public class Cat implements TaskInterface {
 
     private void readFromFile(OutputStream out, String fileName) throws
             IOException {
-        Scanner fileInput = new Scanner(new FileReader(fileName));
-
-        while (fileInput.hasNext()) {
-            out.write(fileInput.next().getBytes());
-            out.flush();
+        try (Scanner fileInput = new Scanner(new FileReader(fileName))) {
+            while (fileInput.hasNext()) {
+                out.write(fileInput.next().getBytes());
+                out.flush();
+            }
         }
-
     }
 }

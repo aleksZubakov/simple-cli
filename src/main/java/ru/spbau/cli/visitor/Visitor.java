@@ -3,13 +3,18 @@ package ru.spbau.cli.visitor;
 import ru.spbau.cli.lexer.tokens.*;
 
 public interface Visitor {
-    void visit(PipeToken tok);
+    default void visit(PipeToken tok) {
+    }
 
-    void visit(SingleQuotedStringToken tok);
+    default void visit(SingleQuotedStringToken tok) {
+    }
 
-    void visit(DoubleQuotedStringToken tok);
+    default void visit(DoubleQuotedStringToken tok) {
+    }
 
-    void visit(UnquotedStringToken tok);
+    default void visit(UnquotedStringToken tok) {
+    }
 
-    void visit(AssignmentToken tok);
+    default void visit(AssignmentToken tok) {
+    }
 }

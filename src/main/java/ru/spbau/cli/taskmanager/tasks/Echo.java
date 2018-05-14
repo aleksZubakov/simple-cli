@@ -5,14 +5,15 @@ import ru.spbau.cli.parser.lexems.Argument;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.List;
 
 public class Echo implements TaskInterface {
 
-    private List<Argument> args;
+    private final List<Argument> args;
 
     public Echo() {
-        args = null;
+        args = Collections.emptyList();
     }
 
     public Echo(List<Argument> args) {
