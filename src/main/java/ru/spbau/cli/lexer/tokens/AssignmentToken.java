@@ -35,7 +35,6 @@ public class AssignmentToken implements TokenInterface {
 
     @Override
     public void setValue(String val) {
-        /*TODO rewrite implementation*/
         rvalue = val;
     }
 

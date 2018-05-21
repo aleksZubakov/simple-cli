@@ -17,13 +17,9 @@ public class LexerTest {
 
         Lexer lexer = new Lexer(testString);
 
-        try {
-            List<TokenInterface> res = lexer.parse();
-            assertEquals(1, res.size());
-            assertEquals("value", res.get(0).getValue());
-        } catch (UnexpectedStringEnd e) {
-            e.printStackTrace();
-        }
+        List<TokenInterface> res = lexer.parse();
+        assertEquals(1, res.size());
+        assertEquals("value", res.get(0).getValue());
     }
 
     @Test(expected = UnexpectedStringEnd.class)
@@ -40,13 +36,9 @@ public class LexerTest {
 
         Lexer lexer = new Lexer(testString);
 
-        try {
-            List<TokenInterface> res = lexer.parse();
-            assertEquals(1, res.size());
-            assertEquals("value", res.get(0).getValue());
-        } catch (UnexpectedStringEnd e) {
-            e.printStackTrace();
-        }
+        List<TokenInterface> res = lexer.parse();
+        assertEquals(1, res.size());
+        assertEquals("value", res.get(0).getValue());
     }
 
     @Test
@@ -61,9 +53,8 @@ public class LexerTest {
     }
 
 
-    /*TODO normal method name*/
     @Test
-    public void testAnother() throws UnexpectedStringEnd {
+    public void testAnotherCommand() throws UnexpectedStringEnd {
         String testString = "a=\"$x\" | echo \"another value\"";
 
         Lexer lexer = new Lexer(testString);
@@ -73,9 +64,6 @@ public class LexerTest {
         assertEquals(4, res.size());
 
         assertTrue(res.get(0) instanceof AssignmentToken);
-
-//        AssignmentToken as = (AssignmentToken) res.get(0);
-
 
         assertEquals("a=\"$x\"", res.get(0).getValue());
     }

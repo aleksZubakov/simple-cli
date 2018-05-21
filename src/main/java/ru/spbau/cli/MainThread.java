@@ -16,11 +16,15 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * This is class representing main loop of whole program
+ */
+
 public class MainThread {
     /**
      * Prints data from stream if stream contains data
      *
-     * @param in
+     * @param in input stream containing result of previous runs
      */
     private static void printStream(InputStream in) {
         while (true) {
@@ -40,16 +44,20 @@ public class MainThread {
         }
     }
 
+
     /**
      * Main loop. Call lexer, parser, interpolator and run commands
-     *
-     * @param args
-     * @throws IOException
      */
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) {
         ThreadManager threadManager = new ThreadManager();
         Environment env = new Environment();
         Scanner scanner = new Scanner(System.in);
+
+        run(threadManager, env, scanner);
+    }
+
+    private static void run(ThreadManager threadManager, Environment env, Scanner scanner) {
+
         String readString = scanner.nextLine();
         while (readString != null) {
             Lexer lexer = new Lexer(readString);

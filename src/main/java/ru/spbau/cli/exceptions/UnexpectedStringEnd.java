@@ -3,7 +3,7 @@ package ru.spbau.cli.exceptions;
 /**
  * Exception for unexpected end of line :)
  */
-public class UnexpectedStringEnd extends Exception {
+public class UnexpectedStringEnd extends RuntimeException {
     public UnexpectedStringEnd() {
         super("Unexpected end of string");
     }
@@ -12,4 +12,6 @@ public class UnexpectedStringEnd extends Exception {
         super("Unexpected end of string at position" + Integer.toString(position));
     }
 }
+
+
 

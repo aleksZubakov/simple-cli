@@ -25,7 +25,7 @@ public class Interpolator implements Visitor {
      * Interpolate current tokens.
      *
      * @param tokens represents list of token from lexer
-     * @return
+     * @return list of interpolated tokens
      */
     public List<TokenInterface> interpolate(List<TokenInterface> tokens) {
         tokens.forEach(tok -> tok.accept(this));
@@ -48,8 +48,8 @@ public class Interpolator implements Visitor {
     }
 
     /**
-     * @param source
-     * @return
+     * @param source raw input string
+     * @return string with replaced placeholder
      */
     private String interpolateUnquotedString(String source) {
         StringBuilder res = new StringBuilder();
@@ -71,7 +71,7 @@ public class Interpolator implements Visitor {
                 ind++;
                 int oldInd = ind;
                 ind = source.indexOf('\'', ind);
-                res.append(source.substring(oldInd, ind));
+                res.append(source, oldInd, ind);
                 ind++;
                 continue;
             }

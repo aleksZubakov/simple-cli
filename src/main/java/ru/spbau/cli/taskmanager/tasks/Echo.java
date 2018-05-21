@@ -1,5 +1,6 @@
 package ru.spbau.cli.taskmanager.tasks;
 
+import ru.spbau.cli.exceptions.IllegalStream;
 import ru.spbau.cli.parser.lexems.Argument;
 
 import java.io.IOException;
@@ -22,29 +23,20 @@ public class Echo implements TaskInterface {
 
     @Override
     public void run(InputStream in, OutputStream out) {
-        if (args.isEmpty()) {
-            try {
-                out.close();
-            } catch (IOException e) { /* TODO normal exception handling*/
-                e.printStackTrace();
-            }
-            return;
-        }
-
         for (Argument arg : args) {
             try {
                 out.write(arg.getValue().getBytes());
                 out.flush();
 
-            } catch (IOException e) { /* TODO normal exception handling*/
-                e.printStackTrace();
+            } catch (IOException e) {
+                throw new IllegalStream("Echo cannot write into output stream");
             }
         }
 
         try {
             out.close();
-        } catch (IOException e) { /* TODO normal exception handling*/
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new IllegalStream("Echo cannot close output stream");
         }
     }
 }

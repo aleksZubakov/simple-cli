@@ -1,6 +1,7 @@
 package ru.spbau.cli.taskmanager.tasks;
 
 
+import ru.spbau.cli.exceptions.IllegalStream;
 import ru.spbau.cli.parser.lexems.Argument;
 
 import java.io.FileReader;
@@ -40,24 +41,23 @@ public class WC implements TaskInterface {
 
     @Override
     public void run(InputStream in, OutputStream out) {
-        try {
-            if (args.isEmpty()) {
-                count(in, out);
-            } else {
-                /* TODO file not found error */
-                for (Argument arg : args) {
-                    count(arg.getValue(), out);
-                }
+        if (args.isEmpty()) {
+            count(in, out);
+        } else {
 
-                if (args.size() > 1) {
-                    flushTotalValues(out);
-                }
+            for (Argument arg : args) {
+                count(arg.getValue(), out);
             }
 
+            if (args.size() > 1) {
+                flushTotalValues(out);
+            }
+        }
+
+        try {
             out.close();
         } catch (IOException e) {
-            /* TODO normal exception handling */
-            e.printStackTrace();
+            throw new IllegalStream("WC cannot close output stream" + e.getMessage());
         }
     }
 
@@ -68,15 +68,19 @@ public class WC implements TaskInterface {
      * @param out
      * @throws IOException
      */
-    private void count(String fileName, OutputStream out) throws IOException {
-        FileReader file = new FileReader(fileName);
-        Scanner scanner = new Scanner(file);
+    private void count(String fileName, OutputStream out) {
+        try {
+            FileReader file = new FileReader(fileName);
+            Scanner scanner = new Scanner(file);
 
-        countFromInputStream(out, scanner);
+            countFromInputStream(out, scanner);
 
-        String toWrite = "     " + fileName + "\n";
-        out.write(toWrite.getBytes());
-        out.flush();
+            String toWrite = "     " + fileName + "\n";
+            out.write(toWrite.getBytes());
+            out.flush();
+        } catch (IOException e) {
+            throw new IllegalStream("WC cannot write into stream: " + e.getMessage());
+        }
     }
 
     /**
@@ -86,11 +90,15 @@ public class WC implements TaskInterface {
      * @param out
      * @throws IOException
      */
-    private void count(InputStream in, OutputStream out) throws IOException {
-        countFromInputStream(out, new Scanner(in));
+    private void count(InputStream in, OutputStream out) {
+        try {
+            countFromInputStream(out, new Scanner(in));
 
-        out.write("      \n".getBytes());
-        out.flush();
+            out.write("      \n".getBytes());
+            out.flush();
+        } catch (IOException e) {
+            throw new IllegalStream("WC cannot write into stream: " + e.getMessage());
+        }
     }
 
 
@@ -123,13 +131,18 @@ public class WC implements TaskInterface {
         out.flush();
     }
 
-    private void flushTotalValues(OutputStream out) throws IOException {
-        out.write(MessageFormat.format("     {0}     {1}     {2}", totalWords,
-                totalLines, totalChars).getBytes());
+    private void flushTotalValues(OutputStream out) {
 
-        out.write("     total \n".getBytes());
+        try {
+            out.write(MessageFormat.format("     {0}     {1}     {2}", totalWords,
+                    totalLines, totalChars).getBytes());
 
-        out.flush();
+            out.write("     total \n".getBytes());
+
+            out.flush();
+        } catch (IOException e) {
+            throw new IllegalStream("WC cannot flush total values: " + e.getMessage());
+        }
     }
 
 }

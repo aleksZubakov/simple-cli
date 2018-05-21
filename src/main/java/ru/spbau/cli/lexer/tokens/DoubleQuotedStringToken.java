@@ -13,7 +13,9 @@ public class DoubleQuotedStringToken implements TokenInterface {
     }
 
     /**
-     * @return raw value
+     * Get raw value of token
+     *
+     * @return String
      */
     @Override
     public String getValue() {
@@ -21,7 +23,7 @@ public class DoubleQuotedStringToken implements TokenInterface {
     }
 
     /**
-     * set raw value
+     * Set raw value of token
      *
      * @param value
      */

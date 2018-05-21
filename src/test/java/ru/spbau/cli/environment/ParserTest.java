@@ -13,9 +13,8 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class ParserTest {
-    /*TODO DELETE EXCEPTION*/
     @Test
-    public void testCommandParse() throws Exception {
+    public void testCommandParse() {
         List<TokenInterface> testString = new LinkedList<>();
         testString.add(new UnquotedStringToken("echo"));
 
@@ -26,19 +25,15 @@ public class ParserTest {
     }
 
     @Test
-    public void simpleParserTest() throws Exception {
-//        List<TokenInterface> testString = new LinkedList<>();
-//
-//        testString.add(new UnquotedStringToken("echo"));
-//
-//        Parser parser = new Parser(testString);
-//
-//        List<LexemInterface> res = parser.parse();
-//
-//        assertTrue(res.get(0) instanceof Command);
+    public void simpleParserTest() {
         List<TokenInterface> testString = new LinkedList<>();
         testString.add(new UnquotedStringToken("echo"));
 
+        Parser parser = new Parser(testString);
+
+        List<LexemInterface> res = parser.parse();
+
+        assertTrue(res.get(0) instanceof Command);
 
     }
 

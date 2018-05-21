@@ -1,15 +1,22 @@
 package ru.spbau.cli.taskmanager.tasks;
 
+import ru.spbau.cli.exceptions.IllegalInputFile;
+import ru.spbau.cli.exceptions.IllegalStream;
 import ru.spbau.cli.parser.lexems.Argument;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
+
+/**
+ * Cat
+ */
 public final class Cat implements TaskInterface {
     private final List<Argument> args;
 
@@ -23,6 +30,7 @@ public final class Cat implements TaskInterface {
 
     @Override
     public void run(InputStream in, OutputStream out) {
+
         if (args.isEmpty()) {
             try {
                 int data = in.read();
@@ -32,32 +40,32 @@ public final class Cat implements TaskInterface {
                     data = in.read();
                 }
             } catch (IOException e) {
-                /*TODO throw normal exception */
+                throw new IllegalStream("Cat command cannot read from given input stream");
             }
         } else {
             for (Argument arg : args) {
-                try { /*TODO normal exception handling*/
+                try {
                     readFromFile(out, arg.getValue());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    String msg = MessageFormat.format("Cat cannot find file with name ${0}", arg.getValue());
+                    throw new IllegalInputFile(msg);
                 }
             }
         }
 
         try {
-            out.close(); /*TODO normal exception handling*/
+            out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStream("Cat cannot close output stream :c");
         }
     }
 
     private void readFromFile(OutputStream out, String fileName) throws
             IOException {
-        try (Scanner fileInput = new Scanner(new FileReader(fileName))) {
-            while (fileInput.hasNext()) {
-                out.write(fileInput.next().getBytes());
-                out.flush();
-            }
-        }
+
+
+        byte[] bytes = Files.readAllBytes(Paths.get(fileName));
+        out.write(bytes);
+
     }
 }

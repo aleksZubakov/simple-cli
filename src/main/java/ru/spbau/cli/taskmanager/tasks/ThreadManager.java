@@ -23,6 +23,7 @@ public class ThreadManager {
     private ExecutorService tpes;
     private PipedInputStream stdout;
 
+
     public ThreadManager() {
         tpes = Executors.newCachedThreadPool();
     }
@@ -31,7 +32,7 @@ public class ThreadManager {
     /**
      * Runs givem lexems.
      *
-     * @param lexems
+     * @param lexems list of high-level lexems
      */
     public void run(List<LexemInterface> lexems) {
         List<TaskInterface> tasks = new ArrayList<>();
@@ -73,7 +74,7 @@ public class ThreadManager {
         Iterator<TaskInterface> it = tasks.iterator();
 
         while (it.hasNext()) {
-            TaskThread taskThread = createTaskThread(oldInput, out, it.next());
+            TaskRunnable taskThread = createTaskThread(oldInput, out, it.next());
 
             if (it.hasNext()) {
                 oldInput = in;
@@ -95,9 +96,9 @@ public class ThreadManager {
         return stdout;
     }
 
-    private TaskThread createTaskThread(InputStream in, OutputStream out,
-                                        TaskInterface task) {
-        return new TaskThread(in, out, task);
+    private TaskRunnable createTaskThread(InputStream in, OutputStream out,
+                                          TaskInterface task) {
+        return new TaskRunnable(in, out, task);
     }
 
     private TaskInterface createTask(Command cmd, List<Argument> args) {
@@ -120,6 +121,8 @@ public class ThreadManager {
             case pwd:
                 task = new Pwd();
                 break;
+            case exit:
+                task = new Exit();
         }
         return task;
     }
