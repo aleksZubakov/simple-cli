@@ -45,8 +45,9 @@ public class SubProcess implements TaskInterface {
             int data = -1;
 
             try {
-                if (in != null)
+                if (in != null) {
                     data = in.read();
+                }
 
                 if (data == -1) {
                     break;
@@ -65,7 +66,7 @@ public class SubProcess implements TaskInterface {
 
 
         while (true) {
-            int data = -1;
+            int data;
             try {
                 data = reader.read();
                 if (data == -1)

@@ -1,7 +1,7 @@
 package ru.spbau.cli.exceptions;
 
 /**
- * Exception for unexpected end of line :)
+ * Exception for situation when unexpected end of line found:)
  */
 public class UnexpectedStringEnd extends RuntimeException {
     public UnexpectedStringEnd() {

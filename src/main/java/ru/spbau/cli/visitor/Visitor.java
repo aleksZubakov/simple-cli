@@ -2,6 +2,10 @@ package ru.spbau.cli.visitor;
 
 import ru.spbau.cli.lexer.tokens.*;
 
+/**
+ * Interface for implementing visitor pattern,
+ * visitor to visit Tokens
+ */
 public interface Visitor {
     default void visit(PipeToken tok) {
     }

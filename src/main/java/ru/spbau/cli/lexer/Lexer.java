@@ -25,7 +25,8 @@ public class Lexer {
      * Tries to split given {@code source} into tokens
      *
      * @return list of splited tokens
-     * @throws UnexpectedStringEnd
+     * @throws UnexpectedStringEnd if cannot find closing quotation mark
+     * for opening quotation mark
      */
     public List<TokenInterface> parse() throws UnexpectedStringEnd {
 

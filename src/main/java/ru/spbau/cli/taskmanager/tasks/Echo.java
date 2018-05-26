@@ -9,6 +9,9 @@ import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Implementations of echo utility
+ */
 public class Echo implements TaskInterface {
 
     private final List<Argument> args;

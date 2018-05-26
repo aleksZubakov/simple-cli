@@ -62,10 +62,7 @@ public final class Cat implements TaskInterface {
 
     private void readFromFile(OutputStream out, String fileName) throws
             IOException {
-
-
         byte[] bytes = Files.readAllBytes(Paths.get(fileName));
         out.write(bytes);
-
     }
 }

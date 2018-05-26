@@ -15,26 +15,15 @@ public class Environment {
         symbolTable = new HashMap<>();
     }
 
-    /**
-     * Returns value of given variable or returns empty string
-     *
-     * @param variable
-     * @return
-     */
     public String getVariableValue(String variable) {
         String val = symbolTable.get(variable);
 
-        if (val != null)
-            return val;
-        else
-            return "";
+
+        return val != null ? val : "";
     }
 
     /**
      * Adds new variable into environment
-     *
-     * @param symbol
-     * @param value
      */
     public void addSymbol(String symbol, String value) {
         symbolTable.put(symbol, value);

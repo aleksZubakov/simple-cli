@@ -48,6 +48,7 @@ public class Interpolator implements Visitor {
     }
 
     /**
+     * Expands variables in given string
      * @param source raw input string
      * @return string with replaced placeholder
      */
@@ -104,8 +105,8 @@ public class Interpolator implements Visitor {
      * Expands variable in current raw string. Checks nothing, ignores
      * quotes.
      *
-     * @param source
-     * @return
+     * @param source string in which written variables references
+     * @return interpolated string
      */
     private String expandVariables(String source) {
         char currentSymbol;

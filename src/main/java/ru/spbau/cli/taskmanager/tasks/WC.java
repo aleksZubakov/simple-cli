@@ -25,11 +25,7 @@ public class WC implements TaskInterface {
     private int totalChars;
 
     public WC() {
-        totalWords = 0;
-        totalLines = 0;
-        totalChars = 0;
-        args = Collections.emptyList();
-
+        this(Collections.emptyList());
     }
 
     public WC(List<Argument> args) {
@@ -69,12 +65,10 @@ public class WC implements TaskInterface {
      * @throws IOException
      */
     private void count(String fileName, OutputStream out) {
-        try {
-            FileReader file = new FileReader(fileName);
-            Scanner scanner = new Scanner(file);
+        try (FileReader file = new FileReader(fileName);
+             Scanner scanner = new Scanner(file)) {
 
             countFromInputStream(out, scanner);
-
             String toWrite = "     " + fileName + "\n";
             out.write(toWrite.getBytes());
             out.flush();
