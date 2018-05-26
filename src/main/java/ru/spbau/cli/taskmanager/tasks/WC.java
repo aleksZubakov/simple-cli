@@ -43,7 +43,7 @@ public class WC implements TaskInterface {
             } else {
                 /* TODO file not found error */
                 for (Argument arg : args) {
-                    count(arg.getValue(), out);
+                    count(getAbsolutePath(arg.getValue()), out);
                 }
 
                 if (args.size() > 1) {

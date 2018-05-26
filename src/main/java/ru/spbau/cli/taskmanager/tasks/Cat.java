@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,15 +37,12 @@ public class Cat implements TaskInterface {
 
             for (Argument arg : args) {
                 try { /*TODO normal exception handling*/
-                    readFromFile(out, arg.getValue());
+                    readFromFile(out, getAbsolutePath(arg.getValue()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-
-
         }
-
         try {
             out.close(); /*TODO normal exception handling*/
         } catch (IOException e) {
@@ -62,4 +60,6 @@ public class Cat implements TaskInterface {
         }
 
     }
+
+
 }

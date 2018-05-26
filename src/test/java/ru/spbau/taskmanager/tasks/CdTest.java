@@ -23,6 +23,7 @@ public class CdTest {
         reader = new BufferedReader(new InputStreamReader(pipeInput));
         out = new BufferedOutputStream(new PipedOutputStream(pipeInput));
     }
+
     @Test
     public void cdTestNotADirectory() throws IOException {
         List<Argument> args = new LinkedList<>();
@@ -33,6 +34,7 @@ public class CdTest {
         assertEquals("not a directory", reader.readLine());
         assertEquals(oldDirectory, System.getProperty("user.dir"));
     }
+
     @Test
     public void cdTestDirectory() throws IOException {
         List<Argument> args = new LinkedList<>();

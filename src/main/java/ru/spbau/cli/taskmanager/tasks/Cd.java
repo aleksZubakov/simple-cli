@@ -8,12 +8,13 @@ import java.io.OutputStream;
 import java.util.List;
 import java.io.File;
 
+/*
+  command that changes directory
+ */
 public class Cd implements TaskInterface {
     private List<Argument> args;
 
-    public Cd() {
-        args = null;
-    }
+    public Cd() {}
 
     public Cd(List<Argument> args) {
         this.args = args;
@@ -33,6 +34,10 @@ public class Cd implements TaskInterface {
                 System.out.println("sth bad");
             }
         } else {
+            if (args.size() > 1) {
+                System.out.println("too many arguments");
+                return;
+            }
             for (Argument arg : args) {
                 String dirName = arg.getValue();
                 File dir;

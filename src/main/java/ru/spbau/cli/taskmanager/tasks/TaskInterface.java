@@ -9,4 +9,12 @@ import java.io.OutputStream;
  */
 public interface TaskInterface {
     void run(InputStream in, OutputStream out); // TODO Output stream err??
+
+    default String getAbsolutePath(String filename) {
+        if (filename.startsWith("/")) {
+            return filename;
+        } else {
+            return System.getProperty("user.dir") + "/" + filename;
+        }
+    }
 }
