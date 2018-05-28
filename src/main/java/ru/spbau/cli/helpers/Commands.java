@@ -9,6 +9,7 @@ public enum Commands {
     pwd("pwd"),
     cat("cat"),
     wc("wc"),
+    grep("grep"),
     exit("exit");
 
     private final String command;
