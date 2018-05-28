@@ -112,15 +112,23 @@ public class ThreadManager {
             case echo:
                 task = new Echo(args);
                 break;
+
             case wc:
                 task = new WC(args);
                 break;
+
             case cat:
                 task = new Cat(args);
                 break;
+
+            case grep:
+                task = new Grep(args);
+                break;
+
             case pwd:
                 task = new Pwd();
                 break;
+
             case exit:
                 task = new Exit();
         }

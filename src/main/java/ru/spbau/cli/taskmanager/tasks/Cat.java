@@ -15,7 +15,7 @@ import java.util.List;
 
 
 /**
- * Cat
+ * Cat utility
  */
 public final class Cat implements TaskInterface {
     private final List<Argument> args;

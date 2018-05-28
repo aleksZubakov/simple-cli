@@ -10,11 +10,12 @@ import ru.spbau.cli.parser.lexems.Assignment;
 import ru.spbau.cli.parser.lexems.LexemInterface;
 import ru.spbau.cli.taskmanager.tasks.ThreadManager;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+
 
 /**
  * This is class representing main loop of whole program
@@ -28,18 +29,23 @@ public class MainThread {
      */
     private static void printStream(InputStream in) {
         while (true) {
-            int data = -1;
-            try {
-                data = in.read();
-            } catch (IOException e) {
-                e.printStackTrace();
+            Scanner scanner = new Scanner(in).useDelimiter("\\r?\\n");
+            while (scanner.hasNext()) {
+                System.out.println(scanner.next());
             }
 
-            if (data == -1) {
-                break;
-            }
-
-            System.out.print((char) data);
+//            int data = -1;
+//            try {
+//                data = in.read();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            if (data == -1) {
+//                break;
+//            }
+//
+//            System.out.print((char) data);
 
         }
     }
