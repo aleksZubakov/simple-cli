@@ -37,7 +37,12 @@ public class TaskRunnable implements Runnable {
         } catch (UnexpectedStringEnd e) {
             System.out.println("Problems with parsing: ");
             e.printStackTrace();
-        } finally {
+        } catch (IllegalArgumentException e) {
+            System.out.println("Illegal arguments: ");
+            e.printStackTrace();
+        }
+
+        finally {
             // always should close output stream
             try {
                 out.close();

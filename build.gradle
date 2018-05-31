@@ -32,6 +32,10 @@ dependencies {
 
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+
+    // https://mvnrepository.com/artifact/commons-cli/commons-cli
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+
 }
 
 build.mustRunAfter(clean)
