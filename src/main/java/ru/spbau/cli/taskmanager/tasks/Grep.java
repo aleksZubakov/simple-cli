@@ -13,9 +13,11 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Math.max;
+
 
 /**
- * Implementation of echo utility
+ * Implementation of grep utility
  */
 public class Grep implements TaskInterface {
 
@@ -45,30 +47,32 @@ public class Grep implements TaskInterface {
     }
 
     private void parseArguments() {
-        CommandLineParser parser = new DefaultParser();
-
         if (args.size() < 1) {
             throw new IllegalArgumentException("too few arguments for grep");
         }
 
+        CommandLineParser parser = new DefaultParser();
+//        if (args.size() == 1) {
+//            regexp = args.get(0).getValue();
+//        }
+
+        int stopIdx = max(args.size() - 2, 0) ;
+        String[] stringArgs = args.subList(0, stopIdx)
+                .stream().map(Argument::getValue)
+                .toArray(String[]::new);
+
+        try {
+            parsed = parser.parse(options, stringArgs);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("illegal argument for grep");
+        }
+
         if (args.size() == 1) {
             regexp = args.get(0).getValue();
+        } else {
+            regexp = args.get(stopIdx).getValue();
+            fileName = args.get(stopIdx + 1).getValue();
         }
-
-        int stopIdx = args.size() - 2;
-        if (args.size() > 2) {
-            String[] stringArgs = args.subList(0, stopIdx)
-                    .stream().map(Argument::getValue)
-                    .toArray(String[]::new);
-
-            try {
-                parsed = parser.parse(options, stringArgs);
-            } catch (ParseException e) {
-                throw new IllegalArgumentException("illegal argument for grep");
-            }
-        }
-        regexp = args.get(stopIdx).getValue();
-        fileName = args.get(stopIdx + 1).getValue();
     }
 
     @Override
@@ -120,8 +124,6 @@ public class Grep implements TaskInterface {
         } catch (IOException e) {
             throw new IllegalStream("grep cannot read or write to stream");
         }
-
-
     }
 
 }

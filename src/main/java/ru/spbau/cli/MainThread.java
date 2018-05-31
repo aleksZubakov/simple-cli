@@ -16,7 +16,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
-
 /**
  * This is class representing main loop of whole program
  */
@@ -28,25 +27,9 @@ public class MainThread {
      * @param in input stream containing result of previous runs
      */
     private static void printStream(InputStream in) {
-        while (true) {
-            Scanner scanner = new Scanner(in).useDelimiter("\\r?\\n");
-            while (scanner.hasNext()) {
-                System.out.println(scanner.next());
-            }
-
-//            int data = -1;
-//            try {
-//                data = in.read();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if (data == -1) {
-//                break;
-//            }
-//
-//            System.out.print((char) data);
-
+        Scanner scanner = new Scanner(in).useDelimiter("\\r?\\n");
+        while (scanner.hasNext()) {
+            System.out.println(scanner.next());
         }
     }
 
